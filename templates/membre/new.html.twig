@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau membre
+{% endblock %}
+
+{% block body %}
+	<h1>Créer un nouveau membre</h1>
+
+	{{ include('membre/_form.html.twig') }}
+
+	<a href="{{ path('membre_index') }}" class="btn btn-primary">Retour</a>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membres
+{% endblock %}
+
+{% block body %}
+	<h1>Membres</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Rôles</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Adresse</th>
+				<th>CP</th>
+				<th>Ville</th>
+				<th>Tél.</th>
+				<th>Nb_commandes</th>
+				<th colspan="2">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for membre in membres %}
+				<tr>
+					<td>{{ membre.id }}</td>
+					<td>{{ membre.email }}</td>
+					<td>{{ membre.roles ? membre.roles|json_encode : '' }}</td>
+					<td>{{ membre.nom }}</td>
+					<td>{{ membre.prenom }}</td>
+					<td>{{ membre.adresse }}</td>
+					<td>{{ membre.cp }}</td>
+					<td>{{ membre.ville }}</td>
+					<td>{{ membre.tel }}</td>
+					<td>{{ membre.commandes|length }}</td>
+					<td>
+						<a href="{{ path('membre_show', {'id': membre.id}) }}">
+							<i class="fas fa-eye"></i>
+						</a>
+					</td>
+					<td>
+						<a href="{{ path('membre_edit', {'id': membre.id}) }}">
+							<i class="fas fa-edit"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="12">Aucun résultat trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('membre_new') }}" class="btn btn-primary">Nouveau membre</a>
+{% endblock %}

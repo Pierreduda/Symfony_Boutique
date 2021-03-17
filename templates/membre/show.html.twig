@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membre
+{% endblock %}
+
+{% block body %}
+	<h1>Membre n°{{ membre.id }}</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Email</th>
+				<td>{{ membre.email }}</td>
+			</tr>
+			<tr>
+				<th>Rôles</th>
+				<td>{{ membre.roles ? membre.roles|json_encode : '' }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ membre.nom }}</td>
+			</tr>
+			<tr>
+				<th>Prénom</th>
+				<td>{{ membre.prenom }}</td>
+			</tr>
+			<tr>
+				<th>Adresse</th>
+				<td>{{ membre.adresse }}</td>
+			</tr>
+			<tr>
+				<th>Cp</th>
+				<td>{{ membre.cp }}</td>
+			</tr>
+			<tr>
+				<th>Ville</th>
+				<td>{{ membre.ville }}</td>
+			</tr>
+			<tr>
+				<th>Tél.</th>
+				<td>{{ membre.tel }}</td>
+			</tr>
+			<tr>
+				<th>Commandes</th>
+				{% for commande in membre.commandes %}
+					<td>{{ commande.id }} - {{ commande.montant }} - {{ commande.dateEnregistrement|date('d-m-Y') }} - {{ commande.etat }}</td>
+				{% endfor %}
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('membre_index') }}" class="btn btn-primary">Retour</a>
+
+	<a href="{{ path('membre_edit', {'id': membre.id}) }}" class="btn btn-primary">Editer</a>
+	<br><br>
+	{{ include('membre/_delete_form.html.twig') }}
+{% endblock %}

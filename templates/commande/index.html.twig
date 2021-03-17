@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes
+{% endblock %}
+
+{% block body %}
+	<h1>Commandes</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Montant</th>
+				<th>Date d'enregistrement</th>
+				<th>Etat</th>
+				<th colspan="2">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for commande in commandes %}
+				<tr>
+					<td>{{ commande.id }}</td>
+					<td>{{ commande.membre.email }}</td>
+					<td>{{ commande.membre.nom }}</td>
+					<td>{{ commande.membre.prenom }}</td>
+					<td>{{ commande.montant }}</td>
+					<td>{{ commande.dateEnregistrement ? commande.dateEnregistrement|date('d-m-Y') : '' }}</td>
+					<td>{{ commande.etat }}</td>
+					<td>
+						<a href="{{ path('commande_show', {'id': commande.id}) }}">
+							<i class="fas fa-eye"></i>
+						</a>
+					</td>
+					<td>
+						<a href="{{ path('commande_edit', {'id': commande.id}) }}">
+							<i class="fas fa-edit"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="9">Aucun résultat trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('commande_new') }}" class="btn btn-primary">Nouvelle commande</a>
+{% endblock %}
