@@ -21,7 +21,7 @@
 				</li>
 			{% else %}
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path("home") }}">
+					<a class="nav-link" href="{{ path("profil") }}">
 						<i class="fas fa-user"></i>
 						Espace Client
 					</a>
@@ -46,6 +46,14 @@
 					</div>
 				</li>
 			{% endif %}
+		</ul>
+		<ul class="navbar-nav mr-2">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path("panier") }}">
+					<i class="fas fa-shopping-cart"></i>
+					Panier
+				</a>
+			</li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0" action="{{ path("home") }}">
 			<input class="form-control mr-sm-2" type="search" name="search" placeholder="Rechercher..." aria-label="Search">

@@ -9,7 +9,7 @@ class ProduitFixtures extends BaseFixture
 {
     public function loadData(ObjectManager $manager)
     {
-        $this->createMany(50, "produit", function ($num) {
+        $this->createMany(40, "produit", function ($num) {
             $produit = new Produit;
             $produit->setTitre("Produit_$num");
             $produit->setPrix($this->faker->randomFloat(2, 1, 190));

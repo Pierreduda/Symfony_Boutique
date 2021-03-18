@@ -23,13 +23,14 @@
 					</div>
 				{% endfor %}
 			{% endfor %}
+			<div class="mb-3"> {% block body %}{% endblock %}
+				</div>
 
-			{% block body %}{% endblock %}
+			</div>
 
-		</div>
+			{% block javascripts %}
+				{{ encore_entry_script_tags('app') }}
+			{% endblock %}
+		</body>
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</body>
-</html>
+	</html>

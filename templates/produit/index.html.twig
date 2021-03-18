@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index
+{% block title %}Produits
 {% endblock %}
 
 {% block body %}
-	<h1>Produit index</h1>
+	<h1>Produits</h1>
 
 	<table class="table">
 		<thead>
@@ -15,6 +15,7 @@
 				<th>Prix</th>
 				<th>Stock</th>
 				<th>Photo</th>
+				<th>Catégorie(s)</th>
 				<th colpsan="2">Actions</th>
 			</tr>
 		</thead>
@@ -26,7 +27,12 @@
 					<td>{{ produit.couleur }}</td>
 					<td>{{ produit.prix }}</td>
 					<td>{{ produit.stock }}</td>
-					<td>{{ produit.photo }}</td>
+					<td>{# <img class="img-tab w-25" src="{{ url_images_produits ~ produit.photo }}" alt="{{ produit.titre }}"> #}</td>
+					<td>
+						{% for categorie in produit.categorie %}
+							{{ categorie.titre ~ (loop.last ? "" : ", ") }}
+						{% endfor %}
+					</td>
 					<td>
 						<a href="{{ path('produit_show', {'id': produit.id}) }}">
 							<i class="fas fa-eye"></i>
@@ -40,11 +46,11 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="7">no records found</td>
+					<td colspan="8">Aucun résultat trouvé</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('produit_new') }}">Create new</a>
+	<a href="{{ path('produit_new') }}" class="btn btn-primary">Nouveau produit</a>
 {% endblock %}

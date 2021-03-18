@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier
+{% endblock %}
+
+{% block body %}
+	<table class="table table-bordered table-striped">
+		<thead>
+			<th>Produit</th>
+			<th>Prix</th>
+			<th>Quantité</th>
+			<th>Total</th>
+			<th colspan="2">Actions</th>
+		</thead>
+		<tbody>
+			{% set total = 0 %}
+			{% for ligne in panier %}
+				<tr>
+					<td>{{ ligne.produit.titre }}</td>
+					<td>{{ ligne.produit.prix }}&euro;</td>
+					<td>{{ ligne.quantite }}</td>
+					<td>{{ ligne.produit.prix * ligne.quantite }}&euro;</td>
+					<td>
+						<a href="{{ path('produit_show', {'id': ligne.produit.id}) }}">
+							<i class="fas fa-eye"></i>
+						</a>
+					</td>
+					<td>
+						<a href="{{ path('panier_supprimer', {'id': ligne.produit.id}) }}">
+							<i class="fas fa-trash-alt"></i>
+						</a>
+					</td>
+					{% set total = total + ligne.produit.prix * ligne.quantite %}
+				</tr>
+			{% else %}
+				<td colspan="6">Aucun produit dans le panier actuellement</td>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2">Montant total de la commande :
+					{{ total }}&euro;</td>
+				<td colspan="2">
+					<a href="{{ path('panier_valider') }}">
+						Valider le panier
+					</a>
+				</td>
+				<td colspan="2">
+					<a href="{{ path('panier_vider') }}">
+						Vider le panier
+					</a>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+{% endblock %}

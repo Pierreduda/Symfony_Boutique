@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil
+{% endblock %}
+
+{% block body %}
+	<table class="table table-bordered">
+		<thead class="thead-dark">
+			<tr>
+				<th>Email</th>
+				<th>Rôle(s)</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>{{ app.user.email }}</td>
+				<td>
+					{% for role in app.user.roles %}
+						{% if role is same as 'ROLE_ADMIN' %}
+							Administrateur
+						{% elseif role is same as 'ROLE_SELLER' %}
+							Vendeur
+						{% else %}
+							Membre
+						{% endif %}
+					{% endfor %}
+				</td>
+				<td>{{ app.user.nom }}</td>
+				<td>{{ app.user.prenom }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Commande&nbsp;Id</th>
+				<th>Montant</th>
+				<th>Date d'enregistrement</th>
+				<th>État</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for commande in app.user.commandes %}
+				<tr>
+					<td>{{ commande.id }}</td>
+					<td>{{ commande.montant }}</td>
+					<td>{{ commande.dateEnregistrement|date('d-m-Y') }}</td>
+					<td>{{ commande.etat }}</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucune commande pour le moment</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

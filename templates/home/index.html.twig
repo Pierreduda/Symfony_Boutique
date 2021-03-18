@@ -3,4 +3,35 @@
 {% block title %}Accueil
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+	<div class="container-fluid justify-content-center">
+		<div id="myProducts" class="row col-lg-12 justify-content-center">
+			{% for produit in liste_produits %}
+				<div class="m-3">
+					<div class="card">
+						{# <img class="card-img-top" src="{{ url_images_produits ~ produit.photo }}" alt="{{ produit.titre }}"> #}
+						<div class="card-body">
+							<h5 class="card-title">{{ produit.titre }}</h5>
+							<p class="card-text">{{ produit.couleur }}</p>
+							<p class="card-text">{{ produit.prix }}&euro;</p>
+						</div>
+						<div class="card-footer">
+							<form method="GET" action="{{ path("panier_ajouter", { id: produit.id }) }}" class="mt-2 form-inline" id="">
+								<div class="row">
+									<a href="{{ path("home_show", {id: produit.id}) }}" class="btn btn-primary col-12 col-md-3"><i class="fas fa-eye"></i></a>
+									<div class="col-12 col-md-2"></div>
+									<div class="col-12 col-md-7 d-flex flex-row justify-content-between px-0">
+										<input type="number" name="quantite" value="1" min="1" max={{ produit.stock }} class="form-control col-7">
+										<button class="btn btn-primary col-4">
+											<i class="fas fa-cart-plus"></i>
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

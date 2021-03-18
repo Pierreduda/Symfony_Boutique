@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Produit;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategorieType extends AbstractType
@@ -13,9 +15,7 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('mots_cles')
-            ->add('produits')
-        ;
+            ->add('mots_cles');
     }
 
     public function configureOptions(OptionsResolver $resolver)

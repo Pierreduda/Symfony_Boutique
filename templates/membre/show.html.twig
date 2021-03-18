@@ -40,12 +40,31 @@
 				<th>Tél.</th>
 				<td>{{ membre.tel }}</td>
 			</tr>
+		</tbody>
+	</table>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
 			<tr>
-				<th>Commandes</th>
-				{% for commande in membre.commandes %}
-					<td>{{ commande.id }} - {{ commande.montant }} - {{ commande.dateEnregistrement|date('d-m-Y') }} - {{ commande.etat }}</td>
-				{% endfor %}
+				<th>Commande&nbsp;Id</th>
+				<th>Montant</th>
+				<th>Date d'enregistrement</th>
+				<th>État</th>
 			</tr>
+		</thead>
+		<tbody>
+			{% for commande in membre.commandes %}
+				<tr>
+					<td>{{ commande.id }}</td>
+					<td>{{ commande.montant }}</td>
+					<td>{{ commande.dateEnregistrement|date('d-m-Y') }}</td>
+					<td>{{ commande.etat }}</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucune commande pour ce membre</td>
+				</tr>
+			{% endfor %}
 		</tbody>
 	</table>
 

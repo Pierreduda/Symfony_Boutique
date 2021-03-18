@@ -1,30 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorie{% endblock %}
+{% block title %}Categorie
+{% endblock %}
 
 {% block body %}
-    <h1>Categorie</h1>
+	<h1>Categorie</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ categorie.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ categorie.titre }}</td>
-            </tr>
-            <tr>
-                <th>Mots_cles</th>
-                <td>{{ categorie.motsCles }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ categorie.id }}</td>
+			</tr>
+			<tr>
+				<th>Titre</th>
+				<td>{{ categorie.titre }}</td>
+			</tr>
+			<tr>
+				<th>Mots clés</th>
+				<td>{{ categorie.motsCles }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('categorie_index') }}">back to list</a>
+	<a href="{{ path('categorie_index') }}" class="btn btn-primary">Retour</a>
 
-    <a href="{{ path('categorie_edit', {'id': categorie.id}) }}">edit</a>
-
-    {{ include('categorie/_delete_form.html.twig') }}
+	<a href="{{ path('categorie_edit', {'id': categorie.id}) }}" class="btn btn-primary">Éditer</a>
+	<br><br>
+	{{ include('categorie/_delete_form.html.twig') }}
 {% endblock %}
